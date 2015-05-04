@@ -24,9 +24,13 @@ namespace PokerOddsCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Card test = new Card(Suit.Spades, Value.King);
+            Card test = new Card(Suit.Spades, Rank.King);
 
-            button1.Text = test.Suit.ToString() + test.Value.ToString();
+            //button1.Text = test.Suit.ToString() + test.Value.ToString();
+            button1.Text = test.Rank.ToString() + " of " + test.Suit.ToString();
+            
+            Play playInput = new Play();
+            OddsAndOutsCalculator res = new OddsAndOutsCalculator(playInput);
         }
     }
 }
