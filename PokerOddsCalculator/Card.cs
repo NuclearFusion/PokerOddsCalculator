@@ -32,6 +32,41 @@ namespace PokerOddsCalculator
         {
             return _rank.ToString() + " of " + _suit.ToString();
         }
+
+        public Rank TextToRank(string cardName)
+        {
+            string[] splitCardName = cardName.Split(' ');
+            switch (splitCardName[0])
+            {
+                case "Ace": return Rank.Ace;
+                case "Two": return Rank.Two;
+                case "Three": return Rank.Three;
+                case "Four": return Rank.Four;
+                case "Five": return Rank.Five;
+                case "Six": return Rank.Six;
+                case "Seven": return Rank.Seven;
+                case "Eight": return Rank.Eight;
+                case "Nine": return Rank.Nine;
+                case "Ten": return Rank.Ten;
+                case "Jack": return Rank.Jack;
+                case "Queen": return Rank.Queen;
+                case "King": return Rank.King;
+                default: return Rank.Ace;
+            }
+        }
+
+        public Suit TextToSuit(string cardName)
+        {
+            string[] splitCardName = cardName.Split(' ');
+            switch (splitCardName[2])
+            {
+                case "Hearts": return Suit.Hearts;
+                case "Diamonds": return Suit.Diamonds;
+                case "Clubs": return Suit.Clubs;
+                case "Spades": return Suit.Spades;
+                default: return Suit.Spades;
+            }
+        }
     }
 
     public enum Suit
@@ -83,7 +118,7 @@ namespace PokerOddsCalculator
     {
         public PlayerHand PlayerHand
         {
-            get 
+            get
             {
                 return PlayerHand;
             }
