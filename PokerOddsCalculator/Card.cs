@@ -28,12 +28,12 @@ namespace PokerOddsCalculator
             get { return _rank; }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return _rank.ToString() + " of " + _suit.ToString();
         }
 
-        public Rank TextToRank(string cardName)
+        public static Rank TextToRank(string cardName)
         {
             string[] splitCardName = cardName.Split(' ');
             switch (splitCardName[0])
@@ -55,7 +55,7 @@ namespace PokerOddsCalculator
             }
         }
 
-        public Suit TextToSuit(string cardName)
+        public static Suit TextToSuit(string cardName)
         {
             string[] splitCardName = cardName.Split(' ');
             switch (splitCardName[2])
@@ -94,6 +94,15 @@ namespace PokerOddsCalculator
         King = 13,
     }
 
+    public struct Play
+    {
+        public PlayerHand PlayerHand { get; set; }
+
+
+        public Table Table { get; set; }
+
+    }
+
     public struct PlayerHand
     {
         public Card PlayerCard1 { get; set; }
@@ -112,24 +121,5 @@ namespace PokerOddsCalculator
         public Card Turn { get; set; }
 
         public Card River { get; set; }
-    }
-
-    public struct Play
-    {
-        public PlayerHand PlayerHand
-        {
-            get
-            {
-                return PlayerHand;
-            }
-        }
-
-        public Table Table
-        {
-            get
-            {
-                return Table;
-            }
-        }
     }
 }

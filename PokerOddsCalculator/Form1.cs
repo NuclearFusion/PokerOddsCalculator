@@ -37,8 +37,22 @@ namespace PokerOddsCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Play playInput = new Play();
-            OddsAndOutsCalculator res = new OddsAndOutsCalculator(playInput);
+            PlayerHand pHand = new PlayerHand();
+            pHand.PlayerCard1 = new Card(Card.TextToSuit(PlayerCard1.Text), Card.TextToRank(PlayerCard1.Text));
+            pHand.PlayerCard2 = new Card(Card.TextToSuit(PlayerCard2.Text), Card.TextToRank(PlayerCard2.Text));
+
+            Table table = new Table();
+            table.Flop1 = new Card(Card.TextToSuit(FlopCard1.Text), Card.TextToRank(FlopCard1.Text));
+            table.Flop2 = new Card(Card.TextToSuit(FlopCard2.Text), Card.TextToRank(FlopCard2.Text));
+            table.Flop3 = new Card(Card.TextToSuit(FlopCard3.Text), Card.TextToRank(FlopCard3.Text));
+            table.Turn = new Card(Card.TextToSuit(TurnCard.Text), Card.TextToRank(TurnCard.Text));
+            table.River = new Card(Card.TextToSuit(RiverCard.Text), Card.TextToRank(RiverCard.Text));
+
+            Play play = new Play();
+            play.PlayerHand = pHand;
+            play.Table = table;
+
+            OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
         }
 
         private void PlayerCard1_SelectedIndexChanged(object sender, EventArgs e)
