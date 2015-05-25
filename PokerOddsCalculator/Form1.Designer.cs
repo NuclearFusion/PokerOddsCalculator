@@ -47,8 +47,13 @@
             this.ThreeOfAKindOdds = new System.Windows.Forms.Label();
             this.TwoPairOdds = new System.Windows.Forms.Label();
             this.OnePairOdds = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.PlayerCard1 = new System.Windows.Forms.ComboBox();
+            this.PlayerCard2 = new System.Windows.Forms.ComboBox();
+            this.FlopCard2 = new System.Windows.Forms.ComboBox();
+            this.FlopCard1 = new System.Windows.Forms.ComboBox();
+            this.FlopCard3 = new System.Windows.Forms.ComboBox();
+            this.TurnCard = new System.Windows.Forms.ComboBox();
+            this.RiverCard = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -64,7 +69,7 @@
             // RoyalFlush
             // 
             this.RoyalFlush.AutoSize = true;
-            this.RoyalFlush.Location = new System.Drawing.Point(575, 29);
+            this.RoyalFlush.Location = new System.Drawing.Point(724, 29);
             this.RoyalFlush.Name = "RoyalFlush";
             this.RoyalFlush.Size = new System.Drawing.Size(62, 13);
             this.RoyalFlush.TabIndex = 1;
@@ -73,7 +78,7 @@
             // StraightFlush
             // 
             this.StraightFlush.AutoSize = true;
-            this.StraightFlush.Location = new System.Drawing.Point(575, 42);
+            this.StraightFlush.Location = new System.Drawing.Point(724, 42);
             this.StraightFlush.Name = "StraightFlush";
             this.StraightFlush.Size = new System.Drawing.Size(71, 13);
             this.StraightFlush.TabIndex = 2;
@@ -82,7 +87,7 @@
             // FourOfAKind
             // 
             this.FourOfAKind.AutoSize = true;
-            this.FourOfAKind.Location = new System.Drawing.Point(575, 55);
+            this.FourOfAKind.Location = new System.Drawing.Point(724, 55);
             this.FourOfAKind.Name = "FourOfAKind";
             this.FourOfAKind.Size = new System.Drawing.Size(61, 13);
             this.FourOfAKind.TabIndex = 3;
@@ -91,7 +96,7 @@
             // FullHouse
             // 
             this.FullHouse.AutoSize = true;
-            this.FullHouse.Location = new System.Drawing.Point(575, 68);
+            this.FullHouse.Location = new System.Drawing.Point(724, 68);
             this.FullHouse.Name = "FullHouse";
             this.FullHouse.Size = new System.Drawing.Size(57, 13);
             this.FullHouse.TabIndex = 4;
@@ -100,7 +105,7 @@
             // Flush
             // 
             this.Flush.AutoSize = true;
-            this.Flush.Location = new System.Drawing.Point(575, 81);
+            this.Flush.Location = new System.Drawing.Point(724, 81);
             this.Flush.Name = "Flush";
             this.Flush.Size = new System.Drawing.Size(32, 13);
             this.Flush.TabIndex = 5;
@@ -109,7 +114,7 @@
             // Straight
             // 
             this.Straight.AutoSize = true;
-            this.Straight.Location = new System.Drawing.Point(575, 94);
+            this.Straight.Location = new System.Drawing.Point(724, 94);
             this.Straight.Name = "Straight";
             this.Straight.Size = new System.Drawing.Size(43, 13);
             this.Straight.TabIndex = 6;
@@ -118,7 +123,7 @@
             // ThreeOfAKind
             // 
             this.ThreeOfAKind.AutoSize = true;
-            this.ThreeOfAKind.Location = new System.Drawing.Point(575, 107);
+            this.ThreeOfAKind.Location = new System.Drawing.Point(724, 107);
             this.ThreeOfAKind.Name = "ThreeOfAKind";
             this.ThreeOfAKind.Size = new System.Drawing.Size(61, 13);
             this.ThreeOfAKind.TabIndex = 7;
@@ -127,7 +132,7 @@
             // TwoPair
             // 
             this.TwoPair.AutoSize = true;
-            this.TwoPair.Location = new System.Drawing.Point(575, 120);
+            this.TwoPair.Location = new System.Drawing.Point(724, 120);
             this.TwoPair.Name = "TwoPair";
             this.TwoPair.Size = new System.Drawing.Size(34, 13);
             this.TwoPair.TabIndex = 8;
@@ -136,7 +141,7 @@
             // OnePair
             // 
             this.OnePair.AutoSize = true;
-            this.OnePair.Location = new System.Drawing.Point(575, 133);
+            this.OnePair.Location = new System.Drawing.Point(724, 133);
             this.OnePair.Name = "OnePair";
             this.OnePair.Size = new System.Drawing.Size(34, 13);
             this.OnePair.TabIndex = 9;
@@ -145,7 +150,7 @@
             // RoyalFlushOdds
             // 
             this.RoyalFlushOdds.AutoSize = true;
-            this.RoyalFlushOdds.Location = new System.Drawing.Point(534, 29);
+            this.RoyalFlushOdds.Location = new System.Drawing.Point(702, 29);
             this.RoyalFlushOdds.Name = "RoyalFlushOdds";
             this.RoyalFlushOdds.Size = new System.Drawing.Size(16, 13);
             this.RoyalFlushOdds.TabIndex = 11;
@@ -154,7 +159,7 @@
             // StraightFlushOdds
             // 
             this.StraightFlushOdds.AutoSize = true;
-            this.StraightFlushOdds.Location = new System.Drawing.Point(534, 42);
+            this.StraightFlushOdds.Location = new System.Drawing.Point(702, 42);
             this.StraightFlushOdds.Name = "StraightFlushOdds";
             this.StraightFlushOdds.Size = new System.Drawing.Size(16, 13);
             this.StraightFlushOdds.TabIndex = 12;
@@ -163,7 +168,7 @@
             // FourOfAKindOdds
             // 
             this.FourOfAKindOdds.AutoSize = true;
-            this.FourOfAKindOdds.Location = new System.Drawing.Point(534, 55);
+            this.FourOfAKindOdds.Location = new System.Drawing.Point(702, 55);
             this.FourOfAKindOdds.Name = "FourOfAKindOdds";
             this.FourOfAKindOdds.Size = new System.Drawing.Size(16, 13);
             this.FourOfAKindOdds.TabIndex = 13;
@@ -172,7 +177,7 @@
             // FullHouseOdds
             // 
             this.FullHouseOdds.AutoSize = true;
-            this.FullHouseOdds.Location = new System.Drawing.Point(534, 68);
+            this.FullHouseOdds.Location = new System.Drawing.Point(702, 68);
             this.FullHouseOdds.Name = "FullHouseOdds";
             this.FullHouseOdds.Size = new System.Drawing.Size(16, 13);
             this.FullHouseOdds.TabIndex = 14;
@@ -181,7 +186,7 @@
             // FlushOdds
             // 
             this.FlushOdds.AutoSize = true;
-            this.FlushOdds.Location = new System.Drawing.Point(534, 81);
+            this.FlushOdds.Location = new System.Drawing.Point(702, 81);
             this.FlushOdds.Name = "FlushOdds";
             this.FlushOdds.Size = new System.Drawing.Size(16, 13);
             this.FlushOdds.TabIndex = 15;
@@ -190,7 +195,7 @@
             // StraightOdds
             // 
             this.StraightOdds.AutoSize = true;
-            this.StraightOdds.Location = new System.Drawing.Point(534, 94);
+            this.StraightOdds.Location = new System.Drawing.Point(702, 94);
             this.StraightOdds.Name = "StraightOdds";
             this.StraightOdds.Size = new System.Drawing.Size(16, 13);
             this.StraightOdds.TabIndex = 16;
@@ -199,7 +204,7 @@
             // ThreeOfAKindOdds
             // 
             this.ThreeOfAKindOdds.AutoSize = true;
-            this.ThreeOfAKindOdds.Location = new System.Drawing.Point(534, 107);
+            this.ThreeOfAKindOdds.Location = new System.Drawing.Point(702, 107);
             this.ThreeOfAKindOdds.Name = "ThreeOfAKindOdds";
             this.ThreeOfAKindOdds.Size = new System.Drawing.Size(16, 13);
             this.ThreeOfAKindOdds.TabIndex = 17;
@@ -208,7 +213,7 @@
             // TwoPairOdds
             // 
             this.TwoPairOdds.AutoSize = true;
-            this.TwoPairOdds.Location = new System.Drawing.Point(534, 120);
+            this.TwoPairOdds.Location = new System.Drawing.Point(702, 120);
             this.TwoPairOdds.Name = "TwoPairOdds";
             this.TwoPairOdds.Size = new System.Drawing.Size(16, 13);
             this.TwoPairOdds.TabIndex = 18;
@@ -217,35 +222,81 @@
             // OnePairOdds
             // 
             this.OnePairOdds.AutoSize = true;
-            this.OnePairOdds.Location = new System.Drawing.Point(534, 133);
+            this.OnePairOdds.Location = new System.Drawing.Point(702, 133);
             this.OnePairOdds.Name = "OnePairOdds";
             this.OnePairOdds.Size = new System.Drawing.Size(16, 13);
             this.OnePairOdds.TabIndex = 19;
             this.OnePairOdds.Text = "...";
             // 
-            // comboBox1
+            // PlayerCard1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(108, 21);
-            this.comboBox1.TabIndex = 20;
+            this.PlayerCard1.FormattingEnabled = true;
+            this.PlayerCard1.Location = new System.Drawing.Point(12, 12);
+            this.PlayerCard1.Name = "PlayerCard1";
+            this.PlayerCard1.Size = new System.Drawing.Size(108, 21);
+            this.PlayerCard1.TabIndex = 20;
+            this.PlayerCard1.SelectedIndexChanged += new System.EventHandler(this.PlayerCard1_SelectedIndexChanged);
             // 
-            // comboBox2
+            // PlayerCard2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(126, 12);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(108, 21);
-            this.comboBox2.TabIndex = 21;
+            this.PlayerCard2.FormattingEnabled = true;
+            this.PlayerCard2.Location = new System.Drawing.Point(126, 12);
+            this.PlayerCard2.Name = "PlayerCard2";
+            this.PlayerCard2.Size = new System.Drawing.Size(108, 21);
+            this.PlayerCard2.TabIndex = 21;
+            // 
+            // FlopCard2
+            // 
+            this.FlopCard2.FormattingEnabled = true;
+            this.FlopCard2.Location = new System.Drawing.Point(126, 73);
+            this.FlopCard2.Name = "FlopCard2";
+            this.FlopCard2.Size = new System.Drawing.Size(108, 21);
+            this.FlopCard2.TabIndex = 22;
+            // 
+            // FlopCard1
+            // 
+            this.FlopCard1.FormattingEnabled = true;
+            this.FlopCard1.Location = new System.Drawing.Point(12, 73);
+            this.FlopCard1.Name = "FlopCard1";
+            this.FlopCard1.Size = new System.Drawing.Size(108, 21);
+            this.FlopCard1.TabIndex = 23;
+            // 
+            // FlopCard3
+            // 
+            this.FlopCard3.FormattingEnabled = true;
+            this.FlopCard3.Location = new System.Drawing.Point(240, 73);
+            this.FlopCard3.Name = "FlopCard3";
+            this.FlopCard3.Size = new System.Drawing.Size(108, 21);
+            this.FlopCard3.TabIndex = 24;
+            // 
+            // TurnCard
+            // 
+            this.TurnCard.FormattingEnabled = true;
+            this.TurnCard.Location = new System.Drawing.Point(354, 73);
+            this.TurnCard.Name = "TurnCard";
+            this.TurnCard.Size = new System.Drawing.Size(108, 21);
+            this.TurnCard.TabIndex = 25;
+            // 
+            // RiverCard
+            // 
+            this.RiverCard.FormattingEnabled = true;
+            this.RiverCard.Location = new System.Drawing.Point(468, 73);
+            this.RiverCard.Name = "RiverCard";
+            this.RiverCard.Size = new System.Drawing.Size(108, 21);
+            this.RiverCard.TabIndex = 26;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 261);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.RiverCard);
+            this.Controls.Add(this.TurnCard);
+            this.Controls.Add(this.FlopCard3);
+            this.Controls.Add(this.FlopCard1);
+            this.Controls.Add(this.FlopCard2);
+            this.Controls.Add(this.PlayerCard2);
+            this.Controls.Add(this.PlayerCard1);
             this.Controls.Add(this.OnePairOdds);
             this.Controls.Add(this.TwoPairOdds);
             this.Controls.Add(this.ThreeOfAKindOdds);
@@ -294,8 +345,13 @@
         private System.Windows.Forms.Label ThreeOfAKindOdds;
         private System.Windows.Forms.Label TwoPairOdds;
         private System.Windows.Forms.Label OnePairOdds;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox PlayerCard1;
+        private System.Windows.Forms.ComboBox PlayerCard2;
+        private System.Windows.Forms.ComboBox FlopCard2;
+        private System.Windows.Forms.ComboBox FlopCard1;
+        private System.Windows.Forms.ComboBox FlopCard3;
+        private System.Windows.Forms.ComboBox TurnCard;
+        private System.Windows.Forms.ComboBox RiverCard;
     }
 }
 

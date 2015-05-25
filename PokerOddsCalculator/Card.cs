@@ -27,6 +27,11 @@ namespace PokerOddsCalculator
         {
             get { return _rank; }
         }
+
+        public string ToString()
+        {
+            return _rank.ToString() + " of " + _suit.ToString();
+        }
     }
 
     public enum Suit
@@ -56,64 +61,22 @@ namespace PokerOddsCalculator
 
     public struct PlayerHand
     {
-        public Card PlayerCard1
-        {
-            get 
-            {
-                return PlayerCard1;
-            }
-        }
-        
-        public Card PlayerCard2
-        {
-            get 
-            {
-                return PlayerCard2;
-            }
-        }
+        public Card PlayerCard1 { get; set; }
+
+        public Card PlayerCard2 { get; set; }
     }
 
     public struct Table
     {
-        public Card Flop1
-        {
-            get
-            {
-                return Flop1;
-            }
-        }
-        
-        public Card Flop2
-        {
-            get
-            {
-                return Flop2;
-            }
-        }
-        
-        public Card Flop3
-        {
-            get
-            {
-                return Flop3;
-            }
-        }
-        
-        public Card Turn
-        {
-            get
-            {
-                return Turn;
-            }
-        }
-        
-        public Card River
-        {
-            get
-            {
-                return River;
-            }
-        }
+        public Card Flop1 { get; set; }
+
+        public Card Flop2 { get; set; }
+
+        public Card Flop3 { get; set; }
+
+        public Card Turn { get; set; }
+
+        public Card River { get; set; }
     }
 
     public struct Play
