@@ -9,20 +9,24 @@ namespace PokerOddsCalculator
     public class OddsAndOutsCalculator
     {
         private Play Play;
-        Card[] Combination = new Card[0];
+        List<Card> Combination = new List<Card>();
         OddsAndOutsResult Result = new OddsAndOutsResult();
 
         public OddsAndOutsCalculator(Play playInput)
         {
             Play = playInput;
-            Combination[0] = Play.PlayerHand.PlayerCard1;
-            Combination[1] = Play.PlayerHand.PlayerCard2;
-            Combination[2] = Play.Table.Flop1;
-            Combination[3] = Play.Table.Flop2;
-            Combination[4] = Play.Table.Flop3;
-            Combination[5] = Play.Table.Turn;
-            Combination[6] = Play.Table.River;
+            if (playInput.PlayerHand.PlayerCard1 != null) { Combination.Add(new Card(playInput.PlayerHand.PlayerCard1.Suit, playInput.PlayerHand.PlayerCard1.Rank)); }
+            if (playInput.PlayerHand.PlayerCard2 != null) { Combination.Add(new Card(playInput.PlayerHand.PlayerCard2.Suit, playInput.PlayerHand.PlayerCard2.Rank)); }
+            if (playInput.Table.Flop1 != null) { Combination.Add(new Card(playInput.Table.Flop1.Suit, playInput.Table.Flop1.Rank)); }
+            if (playInput.Table.Flop2 != null) { Combination.Add(new Card(playInput.Table.Flop2.Suit, playInput.Table.Flop2.Rank)); }
+            if (playInput.Table.Flop3 != null) { Combination.Add(new Card(playInput.Table.Flop3.Suit, playInput.Table.Flop3.Rank)); }
+            if (playInput.Table.Turn != null) { Combination.Add(new Card(playInput.Table.Turn.Suit, playInput.Table.Turn.Rank)); }
+            if (playInput.Table.River != null) { Combination.Add(new Card(playInput.Table.River.Suit, playInput.Table.River.Rank)); }
+            Card [] combination = Combination.ToArray();
 
+            OnePair();
+
+            Console.WriteLine(Result.OnePair);
         }
 
         public void RoyalFlush()
@@ -113,13 +117,16 @@ namespace PokerOddsCalculator
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    if(Combination[i].Rank.ToString() == Combination[j].Rank.ToString())
+                    if( i != j)
                     {
-                        Result.OnePair = 100;
-                    }
-                    else
-                    {
+                        if (Combination[i].Rank.ToString() == Combination[j].Rank.ToString())
+                        {
+                            Result.OnePair = 100;
+                        }
+                        else
+                        {
 
+                        }
                     }
                 }
             }
