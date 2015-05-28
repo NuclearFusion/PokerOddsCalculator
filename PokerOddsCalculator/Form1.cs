@@ -40,39 +40,42 @@ namespace PokerOddsCalculator
             PlayerHand pHand = new PlayerHand();
             Table table = new Table();
             Play play = new Play();
-
-            if (!String.IsNullOrEmpty(PlayerCard1.Text) &&
-                !String.IsNullOrEmpty(PlayerCard2.Text) &&
-                !String.IsNullOrEmpty(FlopCard1.Text) &&
-                !String.IsNullOrEmpty(FlopCard2.Text) &&
-                !String.IsNullOrEmpty(FlopCard3.Text))
+            if (!String.IsNullOrEmpty(PlayerCard1.Text) && !String.IsNullOrEmpty(PlayerCard2.Text))
             {
                 pHand.PlayerCard1 = new Card(Card.TextToSuit(PlayerCard1.Text), Card.TextToRank(PlayerCard1.Text));
                 pHand.PlayerCard2 = new Card(Card.TextToSuit(PlayerCard2.Text), Card.TextToRank(PlayerCard2.Text));
-
-                table.Flop1 = new Card(Card.TextToSuit(FlopCard1.Text), Card.TextToRank(FlopCard1.Text));
-                table.Flop2 = new Card(Card.TextToSuit(FlopCard2.Text), Card.TextToRank(FlopCard2.Text));
-                table.Flop3 = new Card(Card.TextToSuit(FlopCard3.Text), Card.TextToRank(FlopCard3.Text));
-                if (!String.IsNullOrEmpty(TurnCard.Text))
+                if (!String.IsNullOrEmpty(FlopCard1.Text) && !String.IsNullOrEmpty(FlopCard2.Text) && !String.IsNullOrEmpty(FlopCard3.Text))
                 {
-                    table.Turn = new Card(Card.TextToSuit(TurnCard.Text), Card.TextToRank(TurnCard.Text));
-                    if (!String.IsNullOrEmpty(RiverCard.Text))
+                    table.Flop1 = new Card(Card.TextToSuit(FlopCard1.Text), Card.TextToRank(FlopCard1.Text));
+                    table.Flop2 = new Card(Card.TextToSuit(FlopCard2.Text), Card.TextToRank(FlopCard2.Text));
+                    table.Flop3 = new Card(Card.TextToSuit(FlopCard3.Text), Card.TextToRank(FlopCard3.Text));
+                    if (!String.IsNullOrEmpty(TurnCard.Text))
                     {
-                        table.River = new Card(Card.TextToSuit(RiverCard.Text), Card.TextToRank(RiverCard.Text));
+                        table.Turn = new Card(Card.TextToSuit(TurnCard.Text), Card.TextToRank(TurnCard.Text));
+                        if (!String.IsNullOrEmpty(RiverCard.Text))
+                        {
+                            table.River = new Card(Card.TextToSuit(RiverCard.Text), Card.TextToRank(RiverCard.Text));
+                        }
+                        else
+                        {
+                            table.River = null;
+                        }
                     }
                     else
                     {
-                        table.River = null;
+                        table.Turn = null;
                     }
                 }
                 else
                 {
-                    table.Turn = null;
+                    table.Flop1 = null;
+                    table.Flop2 = null;
+                    table.Flop3 = null;
                 }
             }
             else
             {
-                Console.WriteLine("Izvēlieties PlayeHand & Flop");
+                Console.WriteLine("Izvēlieties PlayeHand");
             }
 
             play.PlayerHand = pHand;
