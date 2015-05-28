@@ -235,7 +235,6 @@
             this.PlayerCard1.Name = "PlayerCard1";
             this.PlayerCard1.Size = new System.Drawing.Size(108, 21);
             this.PlayerCard1.TabIndex = 20;
-            this.PlayerCard1.SelectedIndexChanged += new System.EventHandler(this.PlayerCard1_SelectedIndexChanged);
             // 
             // PlayerCard2
             // 

@@ -12,9 +12,9 @@ namespace PokerOddsCalculator
         int combinationCardCount = 0;
         List<Card> Combination = new List<Card>();
         OddsAndOutsResult Result = new OddsAndOutsResult();
-        double flopCardRoll1;
-        double flopCardRoll2;
-        double flopCardRoll3;
+        double flopCardRoll;
+        //double flopCardRoll2;
+        //double flopCardRoll3;
         double turnRoll;
         double riverRoll;
 
@@ -136,7 +136,32 @@ namespace PokerOddsCalculator
 
         public void TwoPair()
         {
+            if (combinationCardCount < 3)
+            {
+                Result.TwoPair = 0;
+            }
+            else
+            {
+                switch (combinationCardCount)
+                {
+                    case 2:
+                        if (Combination[0].Rank == Combination[1].Rank)
+                        {
 
+                        }
+                        else
+                        { 
+                        
+                        }
+                        break;
+                    case 5:
+
+                        break;
+                    case 6:
+
+                        break;
+                }
+            }
         }
 
         public void OnePair()
@@ -147,7 +172,7 @@ namespace PokerOddsCalculator
                 {
                     if( i != j)
                     {
-                        if (Combination[i].Rank.ToString() == Combination[j].Rank.ToString())
+                        if (Combination[i].Rank == Combination[j].Rank)
                         {
                             Result.OnePair = 100;
                         }
@@ -156,28 +181,16 @@ namespace PokerOddsCalculator
                             switch (combinationCardCount) 
                             {
                                 case 2:
-                                    //(6 / 50) * (44 / 49) * (43 / 48)
-                                    //(44 / 50) * (6 / 49) * (43 / 48)
-                                    //(44 / 50) * (43 / 49) * (6 / 48)
-                                    flopCardRoll1 = (6.0 / 50.0) * (44.0 / 49.0) * (43.0 / 48.0);
-                                    flopCardRoll2 = (44.0 / 50.0) * (6.0 / 49.0) * (43.0 / 48.0);
-                                    flopCardRoll3 = (44.0 / 50.0) * (43.0 / 49.0) * (6.0 / 48.0);
-                                    Result.OnePair = Math.Round((flopCardRoll1 + flopCardRoll2 + flopCardRoll3) * 100, 1);
+                                    flopCardRoll = (6.0 / 50.0) * (45.0 / 49.0) * (44.0 / 48.0) * (43.0 / 47.0) * (42.0 / 46.0);
+                                    Result.OnePair = Math.Round((flopCardRoll * 5) * 100, 1);
                                     break;
                                 case 5:
-                                    flopCardRoll1 = (6.0 / 50.0) * (44.0 / 49.0) * (43.0 / 48.0) * (42.0 / 47.0);
-                                    flopCardRoll2 = (44.0 / 50.0) * (6.0 / 49.0) * (43.0 / 48.0) * (42.0 / 47.0);
-                                    flopCardRoll3 = (44.0 / 50.0) * (43.0 / 49.0) * (6.0 / 48.0) * (42.0 / 47.0);
-                                    turnRoll = (44.0 / 50.0) * (43.0 / 49.0) * (42.0 / 48.0) * (6.0 / 47.0);
-                                    Result.OnePair = Math.Round((flopCardRoll1 + flopCardRoll2 + flopCardRoll3 + turnRoll) * 100, 1);
+                                    turnRoll = (6.0 / 50.0) * (45.0 / 49.0);
+                                    Result.OnePair = Math.Round((turnRoll * 2) * 100, 1);
                                     break;
                                 case 6:
-                                    flopCardRoll1 = (6.0 / 50.0) * (44.0 / 49.0) * (43.0 / 48.0) * (42.0 / 47.0) * (41.0 / 46.0);
-                                    flopCardRoll2 = (44.0 / 50.0) * (6.0 / 49.0) * (43.0 / 48.0) * (42.0 / 47.0) * (41.0 / 46.0);
-                                    flopCardRoll3 = (44.0 / 50.0) * (43.0 / 49.0) * (6.0 / 48.0) * (42.0 / 47.0) * (41.0 / 46.0);
-                                    turnRoll = (44.0 / 50.0) * (43.0 / 49.0) * (42.0 / 48.0) * (6.0 / 47.0) * (41.0 / 46.0);
-                                    riverRoll = (44.0 / 50.0) * (43.0 / 49.0) * (42.0 / 48.0) * (41.0 / 47.0) * (6.0 / 46.0);
-                                    Result.OnePair = Math.Round((flopCardRoll1 + flopCardRoll2 + flopCardRoll3 + turnRoll + riverRoll) * 100, 1);
+                                    riverRoll = (6.0 / 50.0);
+                                    Result.OnePair = Math.Round((riverRoll * 1) * 100, 1);
                                     break;
                             }
                         }

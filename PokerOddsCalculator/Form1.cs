@@ -33,6 +33,7 @@ namespace PokerOddsCalculator
                 TurnCard.Items.Add(card.ToString());
                 RiverCard.Items.Add(card.ToString());
             }
+            RiverCard.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -82,11 +83,6 @@ namespace PokerOddsCalculator
             play.Table = table;
 
             OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
-        }
-
-        private void PlayerCard1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
