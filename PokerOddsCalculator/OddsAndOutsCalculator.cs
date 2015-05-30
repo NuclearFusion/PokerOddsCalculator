@@ -63,9 +63,12 @@ namespace PokerOddsCalculator
             TwoPair();
             ThreeOfAKind();
 
-            Console.WriteLine(Result.OnePair);
-            Console.WriteLine(Result.TwoPair);
-            Console.WriteLine(Result.ThreeOfAKind);
+            Flush();
+
+            Console.WriteLine(Result.OnePair + " OnePair");
+            Console.WriteLine(Result.TwoPair + " TwoPair");
+            Console.WriteLine(Result.ThreeOfAKind + " ThreeOfAKind");
+            Console.WriteLine(Result.Flush + " Flush");
         }
 
         public void RoyalFlush()
@@ -132,7 +135,89 @@ namespace PokerOddsCalculator
 
         public void Flush()
         {
-
+            int pCard1Suited = 1;
+            int pCard2Suited = 1;
+            if (Combination[0].Suit == Combination[1].Suit)
+            {
+                pCard1Suited++;
+                pCard2Suited++;
+            }
+            switch (combinationCardCount)
+            {
+                case 2:
+                    Console.WriteLine("Flush - Case 2: Initiated");
+                    if (Combination[0].Suit == Combination[1].Suit)
+                    {
+                        flopCardRoll = (11.0 / 50.0) * (10.0  /49.0) * (9.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        Result.Flush = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    else
+                    {
+                        flopCardRoll = (24.0 / 50.0) * (11.0 / 49.0) * (10.0 / 48.0) * (9.0 / 47.0) * (46.0 / 46.0);
+                        Result.Flush = Math.Round((flopCardRoll * 5) * 100, 1);
+                    }
+                    break;
+                case 5:
+                    Console.WriteLine("Flush - Case 5: Initiated");
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Suit == Combination[i].Suit)
+                        {
+                            pCard1Suited++;
+                        }
+                        if (Combination[1].Suit == Combination[i].Suit)
+                        {
+                            pCard2Suited++;
+                        }
+                    }
+                    Console.WriteLine(pCard1Suited + " " + pCard2Suited);
+                    if (pCard1Suited > 4 || pCard2Suited > 4)
+                    {
+                        Result.Flush = 100;
+                    }
+                    else if (pCard1Suited == 4 || pCard2Suited == 4)
+                    {
+                        turnRoll = (9.0 / 47.0) * (46.0 / 46.0);
+                        Result.Flush = Math.Round((turnRoll * 2) * 100, 1);
+                    }
+                    else if (pCard1Suited == 3 || pCard2Suited == 3)
+                    {
+                        turnRoll = (10.0 / 47.0) * (9.0 / 46.0);
+                        Result.Flush = Math.Round((turnRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.Flush = 0;
+                    }
+                    break;
+                case 6:
+                    Console.WriteLine("Flush - Case 6: Initiated");
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Suit == Combination[i].Suit)
+                        {
+                            pCard1Suited++;
+                        }
+                        if (Combination[1].Suit == Combination[i].Suit)
+                        {
+                            pCard2Suited++;
+                        }
+                    }
+                    if (pCard1Suited > 4 || pCard2Suited > 4)
+                    {
+                        Result.Flush = 100;
+                    }
+                    else if (pCard1Suited == 4 || pCard2Suited == 4)
+                    {
+                        riverRoll = (9.0 / 46.0);
+                        Result.Flush = Math.Round((riverRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.Flush = 0;
+                    }
+                    break;
+            }
         }
 
         public void Straight()
@@ -142,8 +227,13 @@ namespace PokerOddsCalculator
 
         public void ThreeOfAKind()
         {
-            int pCard1Match = 0;
-            int pCard2Match = 0;
+            int pCard1Match = 1;
+            int pCard2Match = 1;
+            if (Combination[0].Rank == Combination[1].Rank)
+            {
+                pCard1Match++;
+                pCard2Match++;
+            }
             switch (combinationCardCount)
             {
                 case 2:
@@ -163,11 +253,6 @@ namespace PokerOddsCalculator
                     Console.WriteLine("ThreeOfAKind - Case 5: Initiated");
                     for (int i = 2; i < combinationCardCount; i++)
                     {
-                        if (Combination[0].Rank == Combination[1].Rank)
-                        {
-                            pCard1Match++;
-                            pCard2Match++;
-                        }
                         if (Combination[0].Rank == Combination[i].Rank)
                         {
                             pCard1Match++;
@@ -177,30 +262,25 @@ namespace PokerOddsCalculator
                             pCard2Match++;
                         }
                     }
-                    if (pCard1Match > 1 || pCard2Match > 1)
+                    if (pCard1Match > 2 || pCard2Match > 2)
                     {
                         Result.ThreeOfAKind = 100;
                     }
-                    else if (pCard1Match == 1 || pCard2Match == 1)
+                    else if (pCard1Match == 2 || pCard2Match == 2)
                     {
                         turnRoll = (2.0 / 47.0) * (45.0 / 46.0);
-                        Result.ThreeOfAKind = Math.Round((turnRoll * 1) * 100, 1);
+                        Result.ThreeOfAKind = Math.Round((turnRoll * 2) * 100, 1);
                     }
                     else
                     {
-                        turnRoll = (3.0 / 47.0) * (2.0 / 46.0);
-                        Result.ThreeOfAKind = Math.Round((turnRoll * 1) * 100, 1);
+                        turnRoll = (6.0 / 47.0) * (2.0 / 46.0);
+                        Result.ThreeOfAKind = Math.Round((turnRoll * 2) * 100, 1);
                     }
                     break;
                 case 6:
                     Console.WriteLine("ThreeOfAKind - Case 6: Initiated");
                     for (int i = 2; i < combinationCardCount; i++)
                     {
-                        if (Combination[0].Rank == Combination[1].Rank)
-                        {
-                            pCard1Match++;
-                            pCard2Match++;
-                        }
                         if (Combination[0].Rank == Combination[i].Rank)
                         {
                             pCard1Match++;
@@ -210,11 +290,11 @@ namespace PokerOddsCalculator
                             pCard2Match++;
                         }
                     }
-                    if (pCard1Match > 1 || pCard2Match > 1)
+                    if (pCard1Match > 2 || pCard2Match > 2 )
                     {
                         Result.ThreeOfAKind = 100;
                     }
-                    else if (pCard1Match == 1 || pCard2Match == 1)
+                    else if (pCard1Match == 2 || pCard2Match == 2)
                     {
                         riverRoll = (2.0 / 46.0);
                         Result.ThreeOfAKind = Math.Round((riverRoll * 1) * 100, 1);
@@ -351,7 +431,6 @@ namespace PokerOddsCalculator
 
         public void OnePair()
         {
-            Console.WriteLine("OnePair: Initiated");
             switch (combinationCardCount)
             {
                 case 2:
