@@ -65,10 +65,13 @@ namespace PokerOddsCalculator
 
             Flush();
 
+            FourOfAKind();
+
             Console.WriteLine(Result.OnePair + " OnePair");
             Console.WriteLine(Result.TwoPair + " TwoPair");
             Console.WriteLine(Result.ThreeOfAKind + " ThreeOfAKind");
             Console.WriteLine(Result.Flush + " Flush");
+            Console.WriteLine(Result.FourOfAKind + " FourOfAKind");
         }
 
         public void RoyalFlush()
@@ -120,17 +123,110 @@ namespace PokerOddsCalculator
 
         public void StraightFlush()
         {
+            switch (combinationCardCount)
+            {
+                case 2:
 
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+            }
         }
 
         public void FourOfAKind()
         {
-
+            int pCard1Match = 1;
+            int pCard2Match = 1;
+            if (Combination[0].Rank == Combination[1].Rank)
+            {
+                pCard1Match++;
+                pCard2Match++;
+            }
+            switch (combinationCardCount)
+            {
+                case 2:
+                    Console.WriteLine("FourOfAKind - Case 2: Initiated");
+                    if (pCard1Match == 2)
+                    {
+                        flopCardRoll = (2.0 / 50.0) * (1.0 / 49.0) * (48.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        Result.FourOfAKind = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    else
+                    {
+                        flopCardRoll = (6.0 / 50.0) * (2.0 / 49.0) * (1.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        Result.FourOfAKind = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    break;
+                case 5:
+                    Console.WriteLine("FourOfAKind - Case 5: Initiated");
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Rank == Combination[i].Rank)
+                        {
+                            pCard1Match++;
+                        }
+                        if (Combination[1].Rank == Combination[i].Rank)
+                        {
+                            pCard2Match++;
+                        }
+                    }
+                    Console.WriteLine(pCard1Match + " " + pCard2Match);
+                    if (pCard1Match > 3 || pCard2Match > 3)
+                    {
+                        Result.FourOfAKind = 100;
+                    }
+                    else if (pCard1Match == 3 || pCard2Match == 3)
+                    {
+                        turnRoll = (1.0 / 47.0) * (46.0 / 46.0);
+                        Result.FourOfAKind = Math.Round((turnRoll * 2) * 100, 1);
+                    }
+                    else if (pCard1Match == 2 || pCard2Match == 2)
+                    {
+                        turnRoll = (2.0 / 47.0) * (1.0 / 46.0);
+                        Result.FourOfAKind = Math.Round((turnRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.FourOfAKind = 0;
+                    }
+                    break;
+                case 6:
+                    Console.WriteLine("FourOfAKind - Case 6: Initiated");
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Rank == Combination[i].Rank)
+                        {
+                            pCard1Match++;
+                        }
+                        if (Combination[1].Rank == Combination[i].Rank)
+                        {
+                            pCard2Match++;
+                        }
+                    }
+                    if (pCard1Match > 3 || pCard2Match > 3)
+                    {
+                        Result.FourOfAKind = 100;
+                    }
+                    else if (pCard1Match == 3 || pCard2Match == 3)
+                    {
+                        turnRoll = (1.0 / 46.0);
+                        Result.FourOfAKind = Math.Round((turnRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.FourOfAKind = 0;
+                    }
+                    break;
+            }
         }
 
         public void FullHouse()
         {
-
+            
         }
 
         public void Flush()
@@ -170,7 +266,6 @@ namespace PokerOddsCalculator
                             pCard2Suited++;
                         }
                     }
-                    Console.WriteLine(pCard1Suited + " " + pCard2Suited);
                     if (pCard1Suited > 4 || pCard2Suited > 4)
                     {
                         Result.Flush = 100;
