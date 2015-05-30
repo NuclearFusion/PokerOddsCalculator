@@ -21,40 +21,49 @@ namespace PokerOddsCalculator
         public OddsAndOutsCalculator(Play playInput)
         {
             Play = playInput;
-            if (playInput.PlayerHand.PlayerCard1 != null) { 
+            if (playInput.PlayerHand.PlayerCard1 != null)
+            {
                 Combination.Add(new Card(playInput.PlayerHand.PlayerCard1.Suit, playInput.PlayerHand.PlayerCard1.Rank));
                 combinationCardCount++;
             }
-            if (playInput.PlayerHand.PlayerCard2 != null) { 
+            if (playInput.PlayerHand.PlayerCard2 != null)
+            {
                 Combination.Add(new Card(playInput.PlayerHand.PlayerCard2.Suit, playInput.PlayerHand.PlayerCard2.Rank));
                 combinationCardCount++;
             }
-            if (playInput.Table.Flop1 != null) { 
+            if (playInput.Table.Flop1 != null)
+            {
                 Combination.Add(new Card(playInput.Table.Flop1.Suit, playInput.Table.Flop1.Rank));
                 combinationCardCount++;
             }
-            if (playInput.Table.Flop2 != null) { 
+            if (playInput.Table.Flop2 != null)
+            {
                 Combination.Add(new Card(playInput.Table.Flop2.Suit, playInput.Table.Flop2.Rank));
                 combinationCardCount++;
             }
-            if (playInput.Table.Flop3 != null) { 
+            if (playInput.Table.Flop3 != null)
+            {
                 Combination.Add(new Card(playInput.Table.Flop3.Suit, playInput.Table.Flop3.Rank));
                 combinationCardCount++;
             }
-            if (playInput.Table.Turn != null) { 
+            if (playInput.Table.Turn != null)
+            {
                 Combination.Add(new Card(playInput.Table.Turn.Suit, playInput.Table.Turn.Rank));
                 combinationCardCount++;
             }
-            if (playInput.Table.River != null) { 
+            if (playInput.Table.River != null)
+            {
                 Combination.Add(new Card(playInput.Table.River.Suit, playInput.Table.River.Rank));
                 combinationCardCount++;
             }
-            
-            Card [] combination = Combination.ToArray();
+
+            Card[] combination = Combination.ToArray();
 
             OnePair();
+            TwoPair();
 
             Console.WriteLine(Result.OnePair);
+            Console.WriteLine(Result.TwoPair);
         }
 
         public void RoyalFlush()
@@ -83,22 +92,22 @@ namespace PokerOddsCalculator
                 }
             }
 
-            if(Hearts > 2)
+            if (Hearts > 2)
             {
 
             }
 
-            if(Diamonds > 2)
+            if (Diamonds > 2)
             {
 
             }
 
-            if(Clubs > 2)
+            if (Clubs > 2)
             {
 
             }
 
-            if(Spades > 2)
+            if (Spades > 2)
             {
 
             }
@@ -110,8 +119,8 @@ namespace PokerOddsCalculator
         }
 
         public void FourOfAKind()
-        { 
-        
+        {
+
         }
 
         public void FullHouse()
@@ -136,66 +145,115 @@ namespace PokerOddsCalculator
 
         public void TwoPair()
         {
-            if (combinationCardCount < 3)
+            switch (combinationCardCount)
             {
-                Result.TwoPair = 0;
-            }
-            else
-            {
-                switch (combinationCardCount)
-                {
-                    case 2:
-                        if (Combination[0].Rank == Combination[1].Rank)
+                case 2:
+                    if (Combination[0].Rank == Combination[1].Rank)
+                    {
+                        flopCardRoll = (48.0 / 50.0) * (3.0 / 49.0) * (44.0 / 48.0) * (43.0 / 47.0) * (42.0 / 46.0);
+                        Result.TwoPair = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    else
+                    {
+                        flopCardRoll = (6.0 / 50.0) * (3.0 / 49) * (44.0 / 48.0) * (43.0 / 47.0) * (42.0 / 46.0);
+                        Result.TwoPair = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    break;
+                case 5:
+                    if (Combination[0].Rank == Combination[1].Rank)
+                    {
+                        for (int i = 2; i < combinationCardCount; i++)
                         {
-
+                            for (int j = 2; j < combinationCardCount; j++)
+                            {
+                                if (i != j)
+                                {
+                                    if (Combination[i].Rank == Combination[j].Rank)
+                                    {
+                                        Result.TwoPair = 100;
+                                    }
+                                }
+                            }
                         }
-                        else
-                        { 
-                        
+                    }
+                    else
+                    {
+                        for (int i = 2; i < combinationCardCount; i++)
+                        {
+                            if (Combination[0].Rank == Combination[i].Rank)
+                            {
+                                for (int j = 2; j < combinationCardCount; j++)
+                                {
+                                    if (Combination[1].Rank == Combination[j].Rank)
+                                    {
+                                        Result.TwoPair = 100;
+                                    }
+                                }
+                            }
                         }
-                        break;
-                    case 5:
+                    }
+                    break;
+                case 6:
 
-                        break;
-                    case 6:
-
-                        break;
-                }
+                    break;
             }
         }
 
         public void OnePair()
         {
-            for (int i = 0; i < combinationCardCount; i++)
+            switch (combinationCardCount)
             {
-                for (int j = 0; j < combinationCardCount; j++)
-                {
-                    if( i != j)
+                case 2:
+                    if (Combination[0].Rank == Combination[1].Rank)
                     {
-                        if (Combination[i].Rank == Combination[j].Rank)
+                        Result.OnePair = 100;
+                    }
+                    else
+                    {
+                        flopCardRoll = (6.0 / 50.0) * (45.0 / 49.0) * (44.0 / 48.0) * (43.0 / 47.0) * (42.0 / 46.0);
+                        Result.OnePair = Math.Round((flopCardRoll * 5) * 100, 1);
+                    }
+                    break;
+                case 5:
+                    for (int i = 0; i < combinationCardCount; i++)
+                    {
+                        for (int j = 0; j < combinationCardCount; j++)
                         {
-                            Result.OnePair = 100;
-                        }
-                        else
-                        {
-                            switch (combinationCardCount) 
+                            if (i != j)
                             {
-                                case 2:
-                                    flopCardRoll = (6.0 / 50.0) * (45.0 / 49.0) * (44.0 / 48.0) * (43.0 / 47.0) * (42.0 / 46.0);
-                                    Result.OnePair = Math.Round((flopCardRoll * 5) * 100, 1);
-                                    break;
-                                case 5:
+                                if (Combination[i].Rank == Combination[j].Rank)
+                                {
+                                    Result.OnePair = 100;
+                                }
+                                else
+                                {
                                     turnRoll = (6.0 / 50.0) * (45.0 / 49.0);
                                     Result.OnePair = Math.Round((turnRoll * 2) * 100, 1);
-                                    break;
-                                case 6:
-                                    riverRoll = (6.0 / 50.0);
-                                    Result.OnePair = Math.Round((riverRoll * 1) * 100, 1);
-                                    break;
+                                }
                             }
                         }
                     }
-                }
+                    break;
+                case 6:
+                    for (int i = 0; i < combinationCardCount; i++)
+                    {
+                        for (int j = 0; j < combinationCardCount; j++)
+                        {
+                            if (i != j)
+                            {
+                                if (Combination[i].Rank == Combination[j].Rank)
+                                {
+                                    Result.OnePair = 100;
+                                }
+                                else
+                                {
+                                    riverRoll = (6.0 / 50.0);
+                                    Result.OnePair = Math.Round((riverRoll * 1) * 100, 1);
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
         }
 
