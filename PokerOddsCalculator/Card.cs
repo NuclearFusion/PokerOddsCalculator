@@ -10,12 +10,19 @@ namespace PokerOddsCalculator
     {
         private readonly Suit _suit;
         private readonly Rank _rank;
+        private readonly bool _drawn;
 
         public Card(PokerOddsCalculator.Suit suit, PokerOddsCalculator.Rank rank)
         {
             // TODO: Complete member initialization
             _suit = suit;
             _rank = rank;
+        }
+
+        public Card(PokerOddsCalculator.Rank rank, bool drawn)
+        {
+            _rank = rank;
+            _drawn = drawn;
         }
 
         public Suit Suit
@@ -26,6 +33,11 @@ namespace PokerOddsCalculator
         public Rank Rank
         {
             get { return _rank; }
+        }
+
+        public bool Drawn
+        {
+            get { return _drawn; }
         }
 
         public override string ToString()

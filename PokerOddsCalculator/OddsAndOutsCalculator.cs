@@ -62,7 +62,7 @@ namespace PokerOddsCalculator
             OnePair();
             TwoPair();
             ThreeOfAKind();
-
+            Straight();
             Flush();
 
             FourOfAKind();
@@ -70,6 +70,7 @@ namespace PokerOddsCalculator
             Console.WriteLine(Result.OnePair + " OnePair");
             Console.WriteLine(Result.TwoPair + " TwoPair");
             Console.WriteLine(Result.ThreeOfAKind + " ThreeOfAKind");
+            Console.WriteLine(Result.Straight + " Straight");
             Console.WriteLine(Result.Flush + " Flush");
             Console.WriteLine(Result.FourOfAKind + " FourOfAKind");
         }
@@ -317,7 +318,104 @@ namespace PokerOddsCalculator
 
         public void Straight()
         {
+            bool addedCard = false;
+            int straightTempCombo = 0;
+            int straightMaxCombo = 0;
+            List<Card> straightDrawn = new List<Card>();
+            
+            for (int i = 1; i < 14; i++)
+            {
+                for (int j = 0; j < combinationCardCount; j++)
+                {
+                    if (i == (int)Combination[j].Rank)
+                    {
+                        straightDrawn.Add(new Card(Combination[j].Rank, true));
+                        addedCard = true;
+                        break;
+                    }
+                    addedCard = false;
+                }
+                if (addedCard == false)
+                {
+                    straightDrawn.Add(new Card((Rank)i, false));
+                }
+            }
 
+            if (straightDrawn[0].Drawn == true) { straightDrawn.Add(new Card(Rank.Ace, true)); }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 5; j++ )
+                {
+                    if (straightDrawn[i+j].Drawn == true)
+                    {
+                        straightTempCombo++;
+                    }
+                }
+                if (straightTempCombo > straightMaxCombo) 
+                { 
+                    straightMaxCombo = straightTempCombo;
+                    straightTempCombo = 0;
+                }
+                else
+                {
+                    straightTempCombo = 0;
+                }
+            }
+            //int something = (int)Combination[0].Rank;
+            switch (combinationCardCount)
+            {
+                case 2:
+                    Console.WriteLine("Straight - Case 2: Initiated");
+                    switch (straightMaxCombo)
+                    {
+                        case 2:
+                            flopCardRoll = (12.0 / 50.0) * (8.0 / 49.0) * (4.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                            Result.Straight = Math.Round((flopCardRoll * 10) * 100, 1);
+                            break;
+                        case 1:
+                            flopCardRoll = (16.0 / 50.0) * (12.0 / 49.0) * (8.0 / 48.0) * (4.0 / 47.0) * (46.0 / 46.0);
+                            Result.Straight = Math.Round((flopCardRoll * 5) * 100, 1);
+                            break;
+                    }
+                        break;
+                case 5:
+                    Console.WriteLine("Straight - Case 5: Initiated");
+                    switch (straightMaxCombo)
+                    {
+                        case 5:
+                            Result.Straight = 100;
+                            break;
+                        case 4:
+                            flopCardRoll = (4.0 / 47.0) * (46.0 / 46.0);
+                            Result.Straight = Math.Round((flopCardRoll * 2) * 100, 1);
+                            break;
+                        case 3:
+                            flopCardRoll = (8.0 / 47.0) * (4.0 / 46.0);
+                            Result.Straight = Math.Round((flopCardRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.Straight = 0;
+                            break;
+                    }
+                    break;
+                case 6:
+                    Console.WriteLine("Straight - Case 6: Initiated");
+                    switch (straightMaxCombo)
+                    {
+                        case 5:
+                            Result.Straight = 100;
+                            break;
+                        case 4:
+                            flopCardRoll = (4.0 / 46.0);
+                            Result.Straight = Math.Round((flopCardRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.Straight = 0;
+                            break;
+                    }
+                    break;
+            }
         }
 
         public void ThreeOfAKind()
