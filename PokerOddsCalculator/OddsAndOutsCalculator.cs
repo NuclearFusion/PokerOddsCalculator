@@ -79,6 +79,11 @@ namespace PokerOddsCalculator
             Console.WriteLine(Result.RoyalFlush + " RoyalFlush");
         }
 
+        public OddsAndOutsResult getResult()
+        {
+            return Result;
+        }
+
         public void RoyalFlush()
         {
             bool addedCard = false;
@@ -91,7 +96,6 @@ namespace PokerOddsCalculator
                 {
                     if (i == (int)Combination[j].Rank)
                     {
-                        Console.WriteLine(i);
                         royalFlushDrawn.Add(new Card(Combination[j].Suit, Combination[j].Rank, true));
                         addedCard = true;
                         break;
@@ -100,7 +104,6 @@ namespace PokerOddsCalculator
                 }
                 if (addedCard == false)
                 {
-                    Console.WriteLine(i);
                     royalFlushDrawn.Add(new Card(Suit.Clubs, (Rank)i, false));
                 }
             }
@@ -825,17 +828,6 @@ namespace PokerOddsCalculator
             }
         }
 
-        public struct OddsAndOutsResult
-        {
-            public double RoyalFlush;
-            public double StraightFlush;
-            public double FourOfAKind;
-            public double FullHouse;
-            public double Flush;
-            public double Straight;
-            public double ThreeOfAKind;
-            public double TwoPair;
-            public double OnePair;
-        }
+
     }
 }

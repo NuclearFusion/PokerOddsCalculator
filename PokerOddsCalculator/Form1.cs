@@ -90,6 +90,16 @@ namespace PokerOddsCalculator
             play.Table = table;
 
             OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
+            OddsAndOutsResult result = res.getResult();
+            OnePairOdds.Text = result.OnePair.ToString();
+            TwoPairOdds.Text = result.TwoPair.ToString();
+            ThreeOfAKindOdds.Text = result.ThreeOfAKind.ToString();
+            StraightOdds.Text = result.Straight.ToString();
+            FlushOdds.Text = result.Flush.ToString();
+            FullHouseOdds.Text = result.FullHouse.ToString();
+            FourOfAKindOdds.Text = result.FourOfAKind.ToString();
+            StraightFlushOdds.Text = result.StraightFlush.ToString();
+            RoyalFlushOdds.Text = result.RoyalFlush.ToString();
         }
 
         private void PlayerCard1_SelectedIndexChanged(object sender, EventArgs e)

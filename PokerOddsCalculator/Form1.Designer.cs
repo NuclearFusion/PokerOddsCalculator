@@ -157,7 +157,7 @@
             // RoyalFlushOdds
             // 
             this.RoyalFlushOdds.AutoSize = true;
-            this.RoyalFlushOdds.Location = new System.Drawing.Point(702, 29);
+            this.RoyalFlushOdds.Location = new System.Drawing.Point(697, 29);
             this.RoyalFlushOdds.Name = "RoyalFlushOdds";
             this.RoyalFlushOdds.Size = new System.Drawing.Size(16, 13);
             this.RoyalFlushOdds.TabIndex = 11;
@@ -166,7 +166,7 @@
             // StraightFlushOdds
             // 
             this.StraightFlushOdds.AutoSize = true;
-            this.StraightFlushOdds.Location = new System.Drawing.Point(702, 42);
+            this.StraightFlushOdds.Location = new System.Drawing.Point(697, 42);
             this.StraightFlushOdds.Name = "StraightFlushOdds";
             this.StraightFlushOdds.Size = new System.Drawing.Size(16, 13);
             this.StraightFlushOdds.TabIndex = 12;
@@ -175,7 +175,7 @@
             // FourOfAKindOdds
             // 
             this.FourOfAKindOdds.AutoSize = true;
-            this.FourOfAKindOdds.Location = new System.Drawing.Point(702, 55);
+            this.FourOfAKindOdds.Location = new System.Drawing.Point(697, 55);
             this.FourOfAKindOdds.Name = "FourOfAKindOdds";
             this.FourOfAKindOdds.Size = new System.Drawing.Size(16, 13);
             this.FourOfAKindOdds.TabIndex = 13;
@@ -184,7 +184,7 @@
             // FullHouseOdds
             // 
             this.FullHouseOdds.AutoSize = true;
-            this.FullHouseOdds.Location = new System.Drawing.Point(702, 68);
+            this.FullHouseOdds.Location = new System.Drawing.Point(697, 68);
             this.FullHouseOdds.Name = "FullHouseOdds";
             this.FullHouseOdds.Size = new System.Drawing.Size(16, 13);
             this.FullHouseOdds.TabIndex = 14;
@@ -193,7 +193,7 @@
             // FlushOdds
             // 
             this.FlushOdds.AutoSize = true;
-            this.FlushOdds.Location = new System.Drawing.Point(702, 81);
+            this.FlushOdds.Location = new System.Drawing.Point(697, 81);
             this.FlushOdds.Name = "FlushOdds";
             this.FlushOdds.Size = new System.Drawing.Size(16, 13);
             this.FlushOdds.TabIndex = 15;
@@ -202,7 +202,7 @@
             // StraightOdds
             // 
             this.StraightOdds.AutoSize = true;
-            this.StraightOdds.Location = new System.Drawing.Point(702, 94);
+            this.StraightOdds.Location = new System.Drawing.Point(697, 94);
             this.StraightOdds.Name = "StraightOdds";
             this.StraightOdds.Size = new System.Drawing.Size(16, 13);
             this.StraightOdds.TabIndex = 16;
@@ -211,7 +211,7 @@
             // ThreeOfAKindOdds
             // 
             this.ThreeOfAKindOdds.AutoSize = true;
-            this.ThreeOfAKindOdds.Location = new System.Drawing.Point(702, 107);
+            this.ThreeOfAKindOdds.Location = new System.Drawing.Point(697, 107);
             this.ThreeOfAKindOdds.Name = "ThreeOfAKindOdds";
             this.ThreeOfAKindOdds.Size = new System.Drawing.Size(16, 13);
             this.ThreeOfAKindOdds.TabIndex = 17;
@@ -220,7 +220,7 @@
             // TwoPairOdds
             // 
             this.TwoPairOdds.AutoSize = true;
-            this.TwoPairOdds.Location = new System.Drawing.Point(702, 120);
+            this.TwoPairOdds.Location = new System.Drawing.Point(697, 120);
             this.TwoPairOdds.Name = "TwoPairOdds";
             this.TwoPairOdds.Size = new System.Drawing.Size(16, 13);
             this.TwoPairOdds.TabIndex = 18;
@@ -229,7 +229,7 @@
             // OnePairOdds
             // 
             this.OnePairOdds.AutoSize = true;
-            this.OnePairOdds.Location = new System.Drawing.Point(702, 133);
+            this.OnePairOdds.Location = new System.Drawing.Point(697, 133);
             this.OnePairOdds.Name = "OnePairOdds";
             this.OnePairOdds.Size = new System.Drawing.Size(16, 13);
             this.OnePairOdds.TabIndex = 19;

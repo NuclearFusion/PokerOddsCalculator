@@ -116,6 +116,20 @@ namespace PokerOddsCalculator
         King = 13,
     }
 
+    //Result structure
+    public struct OddsAndOutsResult
+    {
+        public double RoyalFlush { get; set; }
+        public double StraightFlush { get; set; }
+        public double FourOfAKind { get; set; }
+        public double FullHouse { get; set; }
+        public double Flush { get; set; }
+        public double Straight { get; set; }
+        public double ThreeOfAKind { get; set; }
+        public double TwoPair { get; set; }
+        public double OnePair { get; set; }
+    }
+
     // Defines structure for 7 cards
     public struct Play
     {
