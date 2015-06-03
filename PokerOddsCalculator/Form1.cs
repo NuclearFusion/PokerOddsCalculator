@@ -20,6 +20,13 @@ namespace PokerOddsCalculator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            PlayerCard1.Items.Add("");
+            PlayerCard2.Items.Add("");
+            FlopCard1.Items.Add("");
+            FlopCard2.Items.Add("");
+            FlopCard3.Items.Add("");
+            TurnCard.Items.Add("");
+            RiverCard.Items.Add("");
             for (int i = 0; i < 52 ; i++)
             {
                 int suit = i/13+1;
@@ -36,7 +43,7 @@ namespace PokerOddsCalculator
             RiverCard.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Calculate_Click(object sender, EventArgs e)
         {
             PlayerHand pHand = new PlayerHand();
             Table table = new Table();
@@ -83,6 +90,41 @@ namespace PokerOddsCalculator
             play.Table = table;
 
             OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
+        }
+
+        private void PlayerCard1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PlayerCard2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FlopCard1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FlopCard2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FlopCard3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TurnCard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RiverCard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

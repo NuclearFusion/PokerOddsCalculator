@@ -12,13 +12,20 @@ namespace PokerOddsCalculator
         private readonly Rank _rank;
         private readonly bool _drawn;
 
+        // Card constructor for calculations in StraightFlush() and RoyalFlush()
+        public Card(PokerOddsCalculator.Suit suit, PokerOddsCalculator.Rank rank, bool drawn)
+        {
+            _suit = suit;
+            _rank = rank;
+            _drawn = drawn;
+        }
+        // Default constructor
         public Card(PokerOddsCalculator.Suit suit, PokerOddsCalculator.Rank rank)
         {
-            // TODO: Complete member initialization
             _suit = suit;
             _rank = rank;
         }
-
+        // Constructor for calculations in Straight()
         public Card(PokerOddsCalculator.Rank rank, bool drawn)
         {
             _rank = rank;
@@ -40,11 +47,13 @@ namespace PokerOddsCalculator
             get { return _drawn; }
         }
 
+        // Requeired for population of dropdown lists
         public override string ToString()
         {
             return _rank.ToString() + " of " + _suit.ToString();
         }
 
+        // Gets card rank from string
         public static Rank TextToRank(string cardName)
         {
             string[] splitCardName = cardName.Split(' ');
@@ -67,6 +76,7 @@ namespace PokerOddsCalculator
             }
         }
 
+        //Gets card suit from string
         public static Suit TextToSuit(string cardName)
         {
             string[] splitCardName = cardName.Split(' ');
@@ -106,6 +116,7 @@ namespace PokerOddsCalculator
         King = 13,
     }
 
+    // Defines structure for 7 cards
     public struct Play
     {
         public PlayerHand PlayerHand { get; set; }
@@ -114,14 +125,14 @@ namespace PokerOddsCalculator
         public Table Table { get; set; }
 
     }
-
+    // Defines structure for Player hand held cards
     public struct PlayerHand
     {
         public Card PlayerCard1 { get; set; }
 
         public Card PlayerCard2 { get; set; }
     }
-
+    // Defines structure for table cards
     public struct Table
     {
         public Card Flop1 { get; set; }

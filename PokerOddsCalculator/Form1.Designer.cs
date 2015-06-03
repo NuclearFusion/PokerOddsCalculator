@@ -54,6 +54,13 @@
             this.FlopCard3 = new System.Windows.Forms.ComboBox();
             this.TurnCard = new System.Windows.Forms.ComboBox();
             this.RiverCard = new System.Windows.Forms.ComboBox();
+            this.playerHand1 = new System.Windows.Forms.Label();
+            this.playerHand2 = new System.Windows.Forms.Label();
+            this.flopCardLabel1 = new System.Windows.Forms.Label();
+            this.flopCardLabel2 = new System.Windows.Forms.Label();
+            this.flopCardLabel3 = new System.Windows.Forms.Label();
+            this.turnCardLabel = new System.Windows.Forms.Label();
+            this.riverCardLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -64,7 +71,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Calculate!";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Calculate_Click);
             // 
             // RoyalFlush
             // 
@@ -231,64 +238,141 @@
             // PlayerCard1
             // 
             this.PlayerCard1.FormattingEnabled = true;
-            this.PlayerCard1.Location = new System.Drawing.Point(12, 12);
+            this.PlayerCard1.Location = new System.Drawing.Point(14, 38);
             this.PlayerCard1.Name = "PlayerCard1";
             this.PlayerCard1.Size = new System.Drawing.Size(108, 21);
             this.PlayerCard1.TabIndex = 20;
+            this.PlayerCard1.SelectedIndexChanged += new System.EventHandler(this.PlayerCard1_SelectedIndexChanged);
             // 
             // PlayerCard2
             // 
             this.PlayerCard2.FormattingEnabled = true;
-            this.PlayerCard2.Location = new System.Drawing.Point(126, 12);
+            this.PlayerCard2.Location = new System.Drawing.Point(128, 38);
             this.PlayerCard2.Name = "PlayerCard2";
             this.PlayerCard2.Size = new System.Drawing.Size(108, 21);
             this.PlayerCard2.TabIndex = 21;
+            this.PlayerCard2.SelectedIndexChanged += new System.EventHandler(this.PlayerCard2_SelectedIndexChanged);
             // 
             // FlopCard2
             // 
             this.FlopCard2.FormattingEnabled = true;
-            this.FlopCard2.Location = new System.Drawing.Point(126, 73);
+            this.FlopCard2.Location = new System.Drawing.Point(128, 99);
             this.FlopCard2.Name = "FlopCard2";
             this.FlopCard2.Size = new System.Drawing.Size(108, 21);
             this.FlopCard2.TabIndex = 22;
+            this.FlopCard2.SelectedIndexChanged += new System.EventHandler(this.FlopCard2_SelectedIndexChanged);
             // 
             // FlopCard1
             // 
             this.FlopCard1.FormattingEnabled = true;
-            this.FlopCard1.Location = new System.Drawing.Point(12, 73);
+            this.FlopCard1.Location = new System.Drawing.Point(14, 99);
             this.FlopCard1.Name = "FlopCard1";
             this.FlopCard1.Size = new System.Drawing.Size(108, 21);
             this.FlopCard1.TabIndex = 23;
+            this.FlopCard1.SelectedIndexChanged += new System.EventHandler(this.FlopCard1_SelectedIndexChanged);
             // 
             // FlopCard3
             // 
             this.FlopCard3.FormattingEnabled = true;
-            this.FlopCard3.Location = new System.Drawing.Point(240, 73);
+            this.FlopCard3.Location = new System.Drawing.Point(242, 99);
             this.FlopCard3.Name = "FlopCard3";
             this.FlopCard3.Size = new System.Drawing.Size(108, 21);
             this.FlopCard3.TabIndex = 24;
+            this.FlopCard3.SelectedIndexChanged += new System.EventHandler(this.FlopCard3_SelectedIndexChanged);
             // 
             // TurnCard
             // 
             this.TurnCard.FormattingEnabled = true;
-            this.TurnCard.Location = new System.Drawing.Point(354, 73);
+            this.TurnCard.Location = new System.Drawing.Point(356, 99);
             this.TurnCard.Name = "TurnCard";
             this.TurnCard.Size = new System.Drawing.Size(108, 21);
             this.TurnCard.TabIndex = 25;
+            this.TurnCard.SelectedIndexChanged += new System.EventHandler(this.TurnCard_SelectedIndexChanged);
             // 
             // RiverCard
             // 
             this.RiverCard.FormattingEnabled = true;
-            this.RiverCard.Location = new System.Drawing.Point(468, 73);
+            this.RiverCard.Location = new System.Drawing.Point(470, 99);
             this.RiverCard.Name = "RiverCard";
             this.RiverCard.Size = new System.Drawing.Size(108, 21);
             this.RiverCard.TabIndex = 26;
+            this.RiverCard.SelectedIndexChanged += new System.EventHandler(this.RiverCard_SelectedIndexChanged);
+            // 
+            // playerHand1
+            // 
+            this.playerHand1.AutoSize = true;
+            this.playerHand1.Location = new System.Drawing.Point(12, 22);
+            this.playerHand1.Name = "playerHand1";
+            this.playerHand1.Size = new System.Drawing.Size(70, 13);
+            this.playerHand1.TabIndex = 27;
+            this.playerHand1.Text = "Player Card 1";
+            // 
+            // playerHand2
+            // 
+            this.playerHand2.AutoSize = true;
+            this.playerHand2.Location = new System.Drawing.Point(125, 22);
+            this.playerHand2.Name = "playerHand2";
+            this.playerHand2.Size = new System.Drawing.Size(70, 13);
+            this.playerHand2.TabIndex = 28;
+            this.playerHand2.Text = "Player Card 2";
+            // 
+            // flopCardLabel1
+            // 
+            this.flopCardLabel1.AutoSize = true;
+            this.flopCardLabel1.Location = new System.Drawing.Point(12, 81);
+            this.flopCardLabel1.Name = "flopCardLabel1";
+            this.flopCardLabel1.Size = new System.Drawing.Size(61, 13);
+            this.flopCardLabel1.TabIndex = 29;
+            this.flopCardLabel1.Text = "Flop Card 1";
+            // 
+            // flopCardLabel2
+            // 
+            this.flopCardLabel2.AutoSize = true;
+            this.flopCardLabel2.Location = new System.Drawing.Point(125, 81);
+            this.flopCardLabel2.Name = "flopCardLabel2";
+            this.flopCardLabel2.Size = new System.Drawing.Size(61, 13);
+            this.flopCardLabel2.TabIndex = 30;
+            this.flopCardLabel2.Text = "Flop Card 2";
+            // 
+            // flopCardLabel3
+            // 
+            this.flopCardLabel3.AutoSize = true;
+            this.flopCardLabel3.Location = new System.Drawing.Point(239, 81);
+            this.flopCardLabel3.Name = "flopCardLabel3";
+            this.flopCardLabel3.Size = new System.Drawing.Size(61, 13);
+            this.flopCardLabel3.TabIndex = 31;
+            this.flopCardLabel3.Text = "Flop Card 3";
+            // 
+            // turnCardLabel
+            // 
+            this.turnCardLabel.AutoSize = true;
+            this.turnCardLabel.Location = new System.Drawing.Point(353, 81);
+            this.turnCardLabel.Name = "turnCardLabel";
+            this.turnCardLabel.Size = new System.Drawing.Size(54, 13);
+            this.turnCardLabel.TabIndex = 32;
+            this.turnCardLabel.Text = "Turn Card";
+            // 
+            // riverCardLabel
+            // 
+            this.riverCardLabel.AutoSize = true;
+            this.riverCardLabel.Location = new System.Drawing.Point(467, 81);
+            this.riverCardLabel.Name = "riverCardLabel";
+            this.riverCardLabel.Size = new System.Drawing.Size(57, 13);
+            this.riverCardLabel.TabIndex = 33;
+            this.riverCardLabel.Text = "River Card";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 261);
+            this.Controls.Add(this.riverCardLabel);
+            this.Controls.Add(this.turnCardLabel);
+            this.Controls.Add(this.flopCardLabel3);
+            this.Controls.Add(this.flopCardLabel2);
+            this.Controls.Add(this.flopCardLabel1);
+            this.Controls.Add(this.playerHand2);
+            this.Controls.Add(this.playerHand1);
             this.Controls.Add(this.RiverCard);
             this.Controls.Add(this.TurnCard);
             this.Controls.Add(this.FlopCard3);
@@ -351,6 +435,13 @@
         private System.Windows.Forms.ComboBox FlopCard3;
         private System.Windows.Forms.ComboBox TurnCard;
         private System.Windows.Forms.ComboBox RiverCard;
+        private System.Windows.Forms.Label playerHand1;
+        private System.Windows.Forms.Label playerHand2;
+        private System.Windows.Forms.Label flopCardLabel1;
+        private System.Windows.Forms.Label flopCardLabel2;
+        private System.Windows.Forms.Label flopCardLabel3;
+        private System.Windows.Forms.Label turnCardLabel;
+        private System.Windows.Forms.Label riverCardLabel;
     }
 }
 

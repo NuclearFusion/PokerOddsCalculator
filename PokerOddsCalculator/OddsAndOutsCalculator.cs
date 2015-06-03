@@ -66,6 +66,8 @@ namespace PokerOddsCalculator
             Flush();
 
             FourOfAKind();
+            StraightFlush();
+            RoyalFlush();
 
             Console.WriteLine(Result.OnePair + " OnePair");
             Console.WriteLine(Result.TwoPair + " TwoPair");
@@ -73,73 +75,214 @@ namespace PokerOddsCalculator
             Console.WriteLine(Result.Straight + " Straight");
             Console.WriteLine(Result.Flush + " Flush");
             Console.WriteLine(Result.FourOfAKind + " FourOfAKind");
+            Console.WriteLine(Result.StraightFlush + " StraightFlush");
+            Console.WriteLine(Result.RoyalFlush + " RoyalFlush");
         }
 
         public void RoyalFlush()
         {
-            int Hearts = 0;
-            int Diamonds = 0;
-            int Clubs = 0;
-            int Spades = 0;
-            for (int i = 0; i < 7; i++)
+            bool addedCard = false;
+            int royalFlushCombo = 0;
+            List<Card> royalFlushDrawn = new List<Card>();
+
+            for (int i = 10; i < 14; i++)
             {
-                if (Combination[i].Suit.ToString() == "1")
+                for (int j = 0; j < combinationCardCount; j++)
                 {
-                    Hearts++;
+                    if (i == (int)Combination[j].Rank)
+                    {
+                        Console.WriteLine(i);
+                        royalFlushDrawn.Add(new Card(Combination[j].Suit, Combination[j].Rank, true));
+                        addedCard = true;
+                        break;
+                    }
+                    addedCard = false;
                 }
-                if (Combination[i].Suit.ToString() == "2")
+                if (addedCard == false)
                 {
-                    Diamonds++;
+                    Console.WriteLine(i);
+                    royalFlushDrawn.Add(new Card(Suit.Clubs, (Rank)i, false));
                 }
-                if (Combination[i].Suit.ToString() == "3")
+            }
+
+            for (int k = 0; k < combinationCardCount; k++)
+            {
+                if (Combination[k].Rank == Rank.Ace)
                 {
-                    Clubs++;
+                    royalFlushDrawn.Add(new Card(Combination[k].Suit, Combination[k].Rank, true));
+                    break;
                 }
-                if (Combination[i].Suit.ToString() == "4")
+            }
+            Console.WriteLine(royalFlushDrawn.Count);
+            for (int j = 0; j < royalFlushDrawn.Count; j++)
+            {
+                if (royalFlushDrawn[j].Drawn == true && royalFlushDrawn[j].Suit == royalFlushDrawn[0].Suit)
                 {
-                    Spades++;
+                    royalFlushCombo++;
                 }
             }
 
-            if (Hearts > 2)
+            switch (combinationCardCount)
             {
-
+                case 2:
+                    Console.WriteLine("RoyalFlush - Case 2: Initiated");
+                    switch (royalFlushCombo)
+                    {
+                        case 2:
+                            flopCardRoll = (3.0 / 50.0) * (2.0 / 49.0) * (1.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                            Result.RoyalFlush = Math.Round((flopCardRoll * 10) * 100, 1);
+                            break;
+                        case 1:
+                            flopCardRoll = (4.0 / 50.0) * (3.0 / 49.0) * (2.0 / 48.0) * (1.0 / 47.0) * (46.0 / 46.0);
+                            Result.RoyalFlush = Math.Round((flopCardRoll * 5) * 100, 1);
+                            break;
+                    }
+                    break;
+                case 5:
+                    Console.WriteLine("RoyalFlush - Case 5: Initiated");
+                    switch (royalFlushCombo)
+                    {
+                        case 5:
+                            Result.RoyalFlush = 100;
+                            break;
+                        case 4:
+                            turnRoll = (1.0 / 47.0) * (46.0 / 46.0);
+                            Result.RoyalFlush = Math.Round((turnRoll * 2) * 100, 1);
+                            break;
+                        case 3:
+                            turnRoll = (2.0 / 47.0) * (1.0 / 46.0);
+                            Result.RoyalFlush = Math.Round((turnRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.RoyalFlush = 0;
+                            break;
+                    }
+                    break;
+                case 6:
+                    Console.WriteLine("RoyalFlush - Case 6: Initiated");
+                    switch (royalFlushCombo)
+                    {
+                        case 5:
+                            Result.RoyalFlush = 100;
+                            break;
+                        case 4:
+                            riverRoll = (1.0 / 46.0);
+                            Result.RoyalFlush = Math.Round((riverRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.RoyalFlush = 0;
+                            break;
+                    }
+                    break;
             }
 
-            if (Diamonds > 2)
-            {
-
-            }
-
-            if (Clubs > 2)
-            {
-
-            }
-
-            if (Spades > 2)
-            {
-
-            }
         }
 
         public void StraightFlush()
         {
+            bool addedCard = false;
+            int straightFlushTempCombo = 0;
+            int straightFlushMaxCombo = 0;
+            List<Card> straightFlushDrawn = new List<Card>();
+
+            for (int i = 1; i < 14; i++)
+            {
+                for (int j = 0; j < combinationCardCount; j++)
+                {
+                    if (i == (int)Combination[j].Rank)
+                    {
+                        straightFlushDrawn.Add(new Card(Combination[j].Suit, Combination[j].Rank, true));
+                        addedCard = true;
+                        break;
+                    }
+                    addedCard = false;
+                }
+                if (addedCard == false)
+                {
+                    straightFlushDrawn.Add(new Card(Suit.Clubs, (Rank)i, false));
+                }
+            }
+
+            if (straightFlushDrawn[0].Drawn == true) { straightFlushDrawn.Add(new Card(straightFlushDrawn[0].Suit, straightFlushDrawn[0].Rank, true)); }
+
+            for (int i = 0; i < straightFlushDrawn.Count - 4; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (straightFlushDrawn[i + j].Drawn == true && straightFlushDrawn[i + j].Suit == straightFlushDrawn[i].Suit)
+                    {
+                        straightFlushTempCombo++;
+                    }
+                }
+                if (straightFlushTempCombo > straightFlushMaxCombo)
+                {
+                    straightFlushMaxCombo = straightFlushTempCombo;
+                    straightFlushTempCombo = 0;
+                }
+                else
+                {
+                    straightFlushTempCombo = 0;
+                }
+            }
+
             switch (combinationCardCount)
             {
                 case 2:
-
+                    Console.WriteLine("StraightFlush - Case 2: Initiated");
+                    switch (straightFlushMaxCombo)
+                    {
+                        case 2:
+                            flopCardRoll = (3.0 / 50.0) * (2.0 / 49.0) * (1.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                            Result.StraightFlush = Math.Round((flopCardRoll * 10) * 100, 1);
+                            break;
+                        case 1:
+                            flopCardRoll = (4.0 / 50.0) * (3.0 / 49.0) * (2.0 / 48.0) * (1.0 / 47.0) * (46.0 / 46.0);
+                            Result.StraightFlush = Math.Round((flopCardRoll * 5) * 100, 1);
+                            break;
+                    }
                     break;
                 case 5:
-
+                    Console.WriteLine("StraightFlush - Case 5: Initiated");
+                    switch (straightFlushMaxCombo)
+                    {
+                        case 5:
+                            Result.StraightFlush = 100;
+                            break;
+                        case 4:
+                            turnRoll = (1.0 / 47.0) * (46.0 / 46.0);
+                            Result.StraightFlush = Math.Round((turnRoll * 2) * 100, 1);
+                            break;
+                        case 3:
+                            turnRoll = (2.0 / 47.0) * (1.0 / 46.0);
+                            Result.StraightFlush = Math.Round((turnRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.StraightFlush = 0;
+                            break;
+                    }
                     break;
                 case 6:
-
+                    Console.WriteLine("StraightFlush - Case 6: Initiated");
+                    switch (straightFlushMaxCombo)
+                    {
+                        case 5:
+                            Result.StraightFlush = 100;
+                            break;
+                        case 4:
+                            flopCardRoll = (1.0 / 46.0);
+                            Result.StraightFlush = Math.Round((flopCardRoll * 1) * 100, 1);
+                            break;
+                        default:
+                            Result.StraightFlush = 0;
+                            break;
+                    }
                     break;
             }
         }
 
         public void FourOfAKind()
         {
+            // pCard1Match & pCard2Match each player handheld card rank matches with table and eachother
             int pCard1Match = 1;
             int pCard2Match = 1;
             if (Combination[0].Rank == Combination[1].Rank)
@@ -147,10 +290,10 @@ namespace PokerOddsCalculator
                 pCard1Match++;
                 pCard2Match++;
             }
+            // combinationCardCount cards chosen by player - possible values 2(PreFlop), 5(PostFlop), 6(PostTurn)
             switch (combinationCardCount)
             {
                 case 2:
-                    Console.WriteLine("FourOfAKind - Case 2: Initiated");
                     if (pCard1Match == 2)
                     {
                         flopCardRoll = (2.0 / 50.0) * (1.0 / 49.0) * (48.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
@@ -163,7 +306,7 @@ namespace PokerOddsCalculator
                     }
                     break;
                 case 5:
-                    Console.WriteLine("FourOfAKind - Case 5: Initiated");
+                    // compare player held card ranks with table card ranks
                     for (int i = 2; i < combinationCardCount; i++)
                     {
                         if (Combination[0].Rank == Combination[i].Rank)
@@ -175,7 +318,7 @@ namespace PokerOddsCalculator
                             pCard2Match++;
                         }
                     }
-                    Console.WriteLine(pCard1Match + " " + pCard2Match);
+
                     if (pCard1Match > 3 || pCard2Match > 3)
                     {
                         Result.FourOfAKind = 100;
@@ -196,7 +339,7 @@ namespace PokerOddsCalculator
                     }
                     break;
                 case 6:
-                    Console.WriteLine("FourOfAKind - Case 6: Initiated");
+                    // compare player held card ranks with table card ranks
                     for (int i = 2; i < combinationCardCount; i++)
                     {
                         if (Combination[0].Rank == Combination[i].Rank)
@@ -227,7 +370,7 @@ namespace PokerOddsCalculator
 
         public void FullHouse()
         {
-            
+
         }
 
         public void Flush()
@@ -245,7 +388,7 @@ namespace PokerOddsCalculator
                     Console.WriteLine("Flush - Case 2: Initiated");
                     if (Combination[0].Suit == Combination[1].Suit)
                     {
-                        flopCardRoll = (11.0 / 50.0) * (10.0  /49.0) * (9.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        flopCardRoll = (11.0 / 50.0) * (10.0 / 49.0) * (9.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
                         Result.Flush = Math.Round((flopCardRoll * 10) * 100, 1);
                     }
                     else
@@ -322,7 +465,7 @@ namespace PokerOddsCalculator
             int straightTempCombo = 0;
             int straightMaxCombo = 0;
             List<Card> straightDrawn = new List<Card>();
-            
+
             for (int i = 1; i < 14; i++)
             {
                 for (int j = 0; j < combinationCardCount; j++)
@@ -342,18 +485,17 @@ namespace PokerOddsCalculator
             }
 
             if (straightDrawn[0].Drawn == true) { straightDrawn.Add(new Card(Rank.Ace, true)); }
-
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < straightDrawn.Count - 5; i++)
             {
-                for (int j = 0; j < 5; j++ )
+                for (int j = 0; j < 5; j++)
                 {
-                    if (straightDrawn[i+j].Drawn == true)
+                    if (straightDrawn[i + j].Drawn == true)
                     {
                         straightTempCombo++;
                     }
                 }
-                if (straightTempCombo > straightMaxCombo) 
-                { 
+                if (straightTempCombo > straightMaxCombo)
+                {
                     straightMaxCombo = straightTempCombo;
                     straightTempCombo = 0;
                 }
@@ -378,7 +520,7 @@ namespace PokerOddsCalculator
                             Result.Straight = Math.Round((flopCardRoll * 5) * 100, 1);
                             break;
                     }
-                        break;
+                    break;
                 case 5:
                     Console.WriteLine("Straight - Case 5: Initiated");
                     switch (straightMaxCombo)
@@ -483,7 +625,7 @@ namespace PokerOddsCalculator
                             pCard2Match++;
                         }
                     }
-                    if (pCard1Match > 2 || pCard2Match > 2 )
+                    if (pCard1Match > 2 || pCard2Match > 2)
                     {
                         Result.ThreeOfAKind = 100;
                     }
