@@ -61,6 +61,7 @@
             this.flopCardLabel3 = new System.Windows.Forms.Label();
             this.turnCardLabel = new System.Windows.Forms.Label();
             this.riverCardLabel = new System.Windows.Forms.Label();
+            this.errorText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -361,11 +362,20 @@
             this.riverCardLabel.TabIndex = 33;
             this.riverCardLabel.Text = "River Card";
             // 
+            // errorText
+            // 
+            this.errorText.AutoSize = true;
+            this.errorText.Location = new System.Drawing.Point(125, 230);
+            this.errorText.Name = "errorText";
+            this.errorText.Size = new System.Drawing.Size(0, 13);
+            this.errorText.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 261);
+            this.Controls.Add(this.errorText);
             this.Controls.Add(this.riverCardLabel);
             this.Controls.Add(this.turnCardLabel);
             this.Controls.Add(this.flopCardLabel3);
@@ -442,6 +452,7 @@
         private System.Windows.Forms.Label flopCardLabel3;
         private System.Windows.Forms.Label turnCardLabel;
         private System.Windows.Forms.Label riverCardLabel;
+        private System.Windows.Forms.Label errorText;
     }
 }
 

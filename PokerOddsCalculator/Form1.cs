@@ -45,6 +45,8 @@ namespace PokerOddsCalculator
 
         private void Calculate_Click(object sender, EventArgs e)
         {
+            bool error = false;
+            errorText.Text = "";
             PlayerHand pHand = new PlayerHand();
             Table table = new Table();
             Play play = new Play();
@@ -63,6 +65,35 @@ namespace PokerOddsCalculator
                         if (!String.IsNullOrEmpty(RiverCard.Text))
                         {
                             table.River = new Card(Card.TextToSuit(RiverCard.Text), Card.TextToRank(RiverCard.Text));
+                            if (!String.IsNullOrEmpty(FlopCard1.Text) || !String.IsNullOrEmpty(FlopCard2.Text) || !String.IsNullOrEmpty(FlopCard3.Text))
+                {
+                    error = true;
+                    errorText.Text = "Izvēlieties: ";
+                    if (String.IsNullOrEmpty(FlopCard1.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel1.Text;
+                        if (String.IsNullOrEmpty(FlopCard2.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel2.Text;
+                        }
+                        if (String.IsNullOrEmpty(FlopCard3.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel3.Text;
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(FlopCard2.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel2.Text;
+                        if (String.IsNullOrEmpty(FlopCard3.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel3.Text;
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(FlopCard3.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel3.Text;
+                    }
+                }
                         }
                         else
                         {
@@ -74,6 +105,35 @@ namespace PokerOddsCalculator
                         table.Turn = null;
                     }
                 }
+                else if (!String.IsNullOrEmpty(FlopCard1.Text) || !String.IsNullOrEmpty(FlopCard2.Text) || !String.IsNullOrEmpty(FlopCard3.Text) || !String.IsNullOrEmpty(TurnCard.Text))
+                {
+                    error = true;
+                    errorText.Text = "Izvēlieties: ";
+                    if (String.IsNullOrEmpty(FlopCard1.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel1.Text;
+                        if (String.IsNullOrEmpty(FlopCard2.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel2.Text;
+                        }
+                        if (String.IsNullOrEmpty(FlopCard3.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel3.Text;
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(FlopCard2.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel2.Text;
+                        if (String.IsNullOrEmpty(FlopCard3.Text))
+                        {
+                            errorText.Text = errorText.Text + ", " + flopCardLabel3.Text;
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(FlopCard3.Text))
+                    {
+                        errorText.Text = errorText.Text + flopCardLabel3.Text;
+                    }
+                }
                 else
                 {
                     table.Flop1 = null;
@@ -83,23 +143,38 @@ namespace PokerOddsCalculator
             }
             else
             {
-                Console.WriteLine("Izvēlieties PlayeHand");
+                error = true;
+                errorText.Text = "Izvēlieties: ";
+                if(String.IsNullOrEmpty(PlayerCard1.Text))
+                {
+                    errorText.Text = errorText.Text + playerHand1.Text;
+                    if (String.IsNullOrEmpty(PlayerCard2.Text))
+                    {
+                        errorText.Text = errorText.Text + ", " + playerHand2.Text;
+                    }
+                }
+                else if (String.IsNullOrEmpty(PlayerCard2.Text))
+                {
+                    errorText.Text = errorText.Text + playerHand2.Text;
+                }
             }
 
             play.PlayerHand = pHand;
             play.Table = table;
-
-            OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
-            OddsAndOutsResult result = res.getResult();
-            OnePairOdds.Text = result.OnePair.ToString();
-            TwoPairOdds.Text = result.TwoPair.ToString();
-            ThreeOfAKindOdds.Text = result.ThreeOfAKind.ToString();
-            StraightOdds.Text = result.Straight.ToString();
-            FlushOdds.Text = result.Flush.ToString();
-            FullHouseOdds.Text = result.FullHouse.ToString();
-            FourOfAKindOdds.Text = result.FourOfAKind.ToString();
-            StraightFlushOdds.Text = result.StraightFlush.ToString();
-            RoyalFlushOdds.Text = result.RoyalFlush.ToString();
+            if (error == false)
+            {
+                OddsAndOutsCalculator res = new OddsAndOutsCalculator(play);
+                OddsAndOutsResult result = res.getResult();
+                OnePairOdds.Text = result.OnePair.ToString();
+                TwoPairOdds.Text = result.TwoPair.ToString();
+                ThreeOfAKindOdds.Text = result.ThreeOfAKind.ToString();
+                StraightOdds.Text = result.Straight.ToString();
+                FlushOdds.Text = result.Flush.ToString();
+                FullHouseOdds.Text = result.FullHouse.ToString();
+                FourOfAKindOdds.Text = result.FourOfAKind.ToString();
+                StraightFlushOdds.Text = result.StraightFlush.ToString();
+                RoyalFlushOdds.Text = result.RoyalFlush.ToString();
+            }
         }
 
         private void PlayerCard1_SelectedIndexChanged(object sender, EventArgs e)

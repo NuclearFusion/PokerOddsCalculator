@@ -373,7 +373,90 @@ namespace PokerOddsCalculator
 
         public void FullHouse()
         {
+            int ofRank1 = 0;
+            int ofRank2 = 0;
+            switch (combinationCardCount)
+            {
+                case 2:
+                    Console.WriteLine("FullHouse - Case 2: Initiated");
+                    if (Combination[0].Rank == Combination[1].Rank)
+                    {
+                        flopCardRoll = (49.0 / 50.0) * (5.0 / 49.0) * (4.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        Result.FullHouse = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    else
+                    {
+                        flopCardRoll = (6.0 / 50.0) * (5.0 / 49.0) * (4.0 / 48.0) * (47.0 / 47.0) * (46.0 / 46.0);
+                        Result.FullHouse = Math.Round((flopCardRoll * 10) * 100, 1);
+                    }
+                    break;
+                case 5:
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Rank == Combination[i].Rank)
+                        {
+                            ofRank1++;
+                        }
+                    }
+                    for (int j = 2; j < combinationCardCount; j++)
+                    {
+                        if (Combination[1].Rank == Combination[j].Rank)
+                        {
+                            ofRank2++;
+                        }
+                    }
+                    if ((ofRank1 > 1 && ofRank2 > 0) || (ofRank1 > 0 && ofRank2 > 1))
+                    {
+                        Result.FullHouse = 100;
+                    }
 
+                    if (Result.FullHouse != 100 && (ofRank1 > 1 || ofRank2 > 1))
+                    {
+                        turnRoll = (6.0 / 47.0) * (46.0 / 46.0);
+                        Result.FullHouse = Math.Round((turnRoll * 1) * 100, 1);
+                    }
+                    else if (Result.FullHouse != 100 && (ofRank1 > 0 || ofRank2 > 0))
+                    {
+                        turnRoll = (9.0 / 47.0) * (2.0 / 46.0);
+                        Result.FullHouse = Math.Round((turnRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.FullHouse = 0;
+                    }
+
+                    break;
+                case 6:
+                    for (int i = 2; i < combinationCardCount; i++)
+                    {
+                        if (Combination[0].Rank == Combination[i].Rank)
+                        {
+                            ofRank1++;
+                        }
+                    }
+                    for (int j = 2; j < combinationCardCount; j++)
+                    {
+                        if (Combination[1].Rank == Combination[j].Rank)
+                        {
+                            ofRank2++;
+                        }
+                    }
+                    if ((ofRank1 > 1 && ofRank2 > 0) || (ofRank1 > 0 && ofRank2 > 1))
+                    {
+                        Result.FullHouse = 100;
+                    }
+
+                    if (Result.FullHouse != 100 && (ofRank1 > 1 || ofRank2 > 1))
+                    {
+                        riverRoll = (9.0 / 46.0);
+                        Result.FullHouse = Math.Round((riverRoll * 1) * 100, 1);
+                    }
+                    else
+                    {
+                        Result.FullHouse = 0;
+                    }
+                    break;
+            }
         }
 
         public void Flush()
@@ -648,6 +731,7 @@ namespace PokerOddsCalculator
         public void TwoPair()
         {
             bool onePair = false;
+            bool twoPair = false;
             switch (combinationCardCount)
             {
                 case 2:
@@ -692,22 +776,27 @@ namespace PokerOddsCalculator
                         {
                             if (Combination[0].Rank == Combination[i].Rank)
                             {
-                                for (int j = 2; j < combinationCardCount; j++)
-                                {
-                                    if (Combination[1].Rank == Combination[j].Rank)
-                                    {
-                                        Result.TwoPair = 100;
-                                    }
-                                }
                                 onePair = true;
                             }
                         }
-                        if (Result.TwoPair != 100 && onePair == true)
+                        for (int j = 2; j < combinationCardCount; j++)
+                        {
+                            if (Combination[1].Rank == Combination[j].Rank)
+                            {
+                                twoPair = true;
+                            }
+                        }
+                        if (onePair == true && twoPair == true)
+                        {
+                            Result.TwoPair = 100;
+                        }
+
+                        if (Result.TwoPair != 100 && (onePair == true || twoPair == true))
                         {
                             turnRoll = (45.0 / 47.0) * (3.0 / 46.0);
                             Result.TwoPair = Math.Round((turnRoll * 1) * 100, 1);
                         }
-                        if (Result.TwoPair != 100 && onePair == false)
+                        else
                         {
                             turnRoll = (6.0 / 47.0) * (3.0 / 46.0);
                             Result.TwoPair = Math.Round((turnRoll * 1) * 100, 1);
@@ -743,22 +832,28 @@ namespace PokerOddsCalculator
                         {
                             if (Combination[0].Rank == Combination[i].Rank)
                             {
-                                for (int j = 2; j < combinationCardCount; j++)
-                                {
-                                    if (Combination[1].Rank == Combination[j].Rank)
-                                    {
-                                        Result.TwoPair = 100;
-                                    }
-                                }
                                 onePair = true;
                             }
                         }
-                        if (Result.TwoPair != 100 && onePair == true)
+                        for (int j = 2; j < combinationCardCount; j++)
+                        {
+                            if (Combination[1].Rank == Combination[j].Rank)
+                            {
+                                twoPair = true;
+                            }
+                        }
+
+                        if (onePair == true && twoPair == true)
+                        {
+                            Result.TwoPair = 100;
+                        }
+
+                        if (Result.TwoPair != 100 && (onePair == true || twoPair == true))
                         {
                             riverRoll = (3.0 / 46.0);
                             Result.TwoPair = Math.Round((riverRoll * 1) * 100, 1);
                         }
-                        if (Result.TwoPair != 100 && onePair == false)
+                        else
                         {
                             Result.TwoPair = 0;
                         }
